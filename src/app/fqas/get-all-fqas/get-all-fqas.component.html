@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="row">
+        <div class="fqas col-lg-12 col-sm-11 col-xs-11">
+            <!--start icon in the left side-->
+            <i class="fa fa-floppy-o fa-2x save-icon " aria-hidden="true"></i>
+            <i class="fa fa-times  fa-2x save-icon " aria-hidden="true"></i>
+            <!--end icon in the left side-->
+
+            <!--start buttons in the left side-->
+            <div class="text-right">
+                <button class="btn" data-toggle="modal" data-target="#addNewFAQ" data-whatever="@mdo">Add FQA</button>
+                <button class="btn" data-toggle="modal" data-target="#addNewCategory" data-whatever="@mdo">Add
+                    Category</button>
+            </div>
+            <!--end buttons in the left side-->
+
+            <!--startdrop && drag for for Categories-->
+            <div cdkDropListGroup class="categoreis-list ">
+                <div cdkDropList (cdkDropListDropped)="drop($event)">
+                    <br>
+                    <p *ngIf="errorMessage " class=" alert-danger alert">
+                        *{{errorMessage}}
+                    </p>
+                    <div *ngFor="let fqa of fqas ; index as i " cdkDrag>
+                        <li class="categoreis-box text-left" id="{{i}}per">
+                            <div class="categoreis-custom-placeholder" *cdkDragPlaceholder></div>
+                            <!--icons Douts-->
+                            <span>
+                                <i class="fa fa-ellipsis-v  fa-lg" aria-hidden="true" style="margin-right:2px"></i>
+                                <i class="fa fa-ellipsis-v  fa-lg" aria-hidden="true" style="margin-right:6px"></i>
+                            </span>
+                            <!--in here the Category name and icons hidden an visibe debend on action will happend-->
+                            <span style="display: inline ;" id="{{i}}category"> {{fqa.name}}</span>
+                            <!--to edit the category with the index category selected-->
+                            <!-- <form style="display:none ;" id="{{i}}formCategory" [formGroup]="formUpdateCategory"
+                                (ngSubmit)="saveUpdateCategory(fqa.id,i,i+'formCategory',i+'category',i+'pen',i+'clsoe')">
+                                <!--Input for update the name of category when user clicking on pen icon and defullt for the button hidden
+                                <input type="text" [value]="fqas[i].name" class="form-control display-inline"
+                                    formControlName="name">
+
+                                <!--button submit the chnges will hpend in the  input
+                                <button type="submit" class="fa fa-check-square-o fa-lg btn-sub" aria-hidden="true"
+                                    style="margin-left:12px ; "></button>
+
+                                <span style="display: block ; color: red; margin-top: 10px;"
+                                    *ngIf="(name.touched || errorMessage) && name.invalid ">
+                                    <span *ngIf="name.errors.required">*Please enter name</span>
+                                </span>
+                            </form>
+                        -->
+                            <!--Icon angel right to collapse the category by clicking on it-->
+                            <i class="fa fa-angle-right fa-pull-right" id="{{i}}angle-right"
+                                (click)="select(i+'sub',i+'angle-right',i+'angle-up')" style="cursor:pointer;"
+                                aria-hidden="true"></i>
+                            <!--Icon angel up to hidden the FAQs by clicking on it-->
+                            <i class="fa fa-angle-up fa-pull-right" id="{{i}}angle-up"
+                                (click)="select(i+'sub',i+'angle-right',i+'angle-up')"
+                                style="cursor:pointer; display: none;" aria-hidden="true"></i>
+                            <!--icon trash for delete and show alert confrmtion-->
+                            <i class="fa fa-trash  fa-pull-right" (click)="deleteCategory(fqa.id ,i)"
+                                style="cursor:pointer;" aria-hidden="true" id="{{i}}trash"></i>
+                            <!--icon close for rest the category to defullt-->
+                            <!-- <i class="fa fa-times-circle-o  fa-pull-right" style="cursor:pointer; display: none;"
+                                (click)="updateCategory(i+'formCategory',i+'category',i+'pen',i+'clsoe')"
+                                aria-hidden="true" id="{{i}}pen" aria-hidden="true" id="{{i}}clsoe"></i> -->
+                            <!--icon pen to edit the category and hidden the category and show input as the category-->
+                            <i class="fa fa-pencil  fa-pull-right" data-toggle="modal" data-target="#editCAtegory"
+                                data-whatever="@mdo" style="cursor:pointer; " aria-hidden="true"
+                                (click)="openAndSendToCateg(fqa)" aria-hidden="true"></i>
+                        </li>
+                        <!--startdrop && drag for for FQAs-->
+                        <div cdkDropList (cdkDropListDropped)="drop2($event,i)" style="display: none;" id="{{i}}sub">
+                            <li class="faqs-box text-left" *ngFor="let faq of fqa.faqs ;index as fi" cdkDrag>
+                                <div class="faqs-custom-placeholder" *cdkDragPlaceholder></div>
+                                <!--icons Douts-->
+                                <i class="fa fa-ellipsis-v  fa-lg" aria-hidden="true"
+                                    style="margin-right:2px ; color:#7835d1"></i>
+                                <i class="fa fa-ellipsis-v  fa-lg" aria-hidden="true"
+                                    style="margin-right:6px ; color:#7835d1"></i>
+                                <!--the question-->
+                                {{faq.question}}
+                                <!--Icon angel right to collapse the answer of quetion as a FAQ  by clicking on it-->
+                                <i class="fa fa-angle-right fa-pull-right" style="cursor:pointer; color:gray"
+                                    aria-hidden="true"></i>
+                                <!--icon trash for delete and show alert confrmtion-->
+                                <i class="fa fa-trash  fa-pull-right" (click)="deleteFaq(faq.id,i,fi)"
+                                    style="cursor:pointer ; color:red" aria-hidden="true"></i>
+                                <!--icon pen to edit the category and hidden the category and show input as the category-->
+                                <i class="fa fa-pencil  fa-pull-right" (click)="openAndSend(faq ,fqa.id)"
+                                    data-toggle="modal" data-target="#editFaq" data-whatever="@mdo"
+                                    style="cursor:pointer; color:#7835d1;" aria-hidden="true"></i>
+
+                            </li>
+                        </div>
+                        <!--end drop && drag for for FQAs-->
+                    </div>
+                </div>
+
+
+            </div>
+            <!--end drop && drag for Categories-->
+
+        </div>
+
+
+
+    </div>
+</div>
+<!--start model for add new faq-->
+<app-add-fqas (messageEvent)="receiveDataFaq($event)"></app-add-fqas>
+<!--end model for add new faq-->
+
+<!--start model for add new category-->
+<app-add-category (messageEvent)="receiveDataCategory($event)"></app-add-category>
+<!--end model for add new category-->
+
+<!--start model for edit the fqa selected-->
+<app-edit-faq (messageEvent)="recevieDataEdit($event)"></app-edit-faq>
+<!--end model for edit the fqa selected-->
+<!--start model for edit the category selected-->
+<app-edit-category ></app-edit-category>
+<!--end model for edit the fqa selected-->

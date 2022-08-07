@@ -1,0 +1,35 @@
+<div class="modal fade" id="editCAtegory" tabindex="-1" role="dialog" aria-labelledby="editCAtegory"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Category Name </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p *ngIf="errorMessage " class=" alert-danger alert">
+                    *{{errorMessage}}
+                </p>
+                <p *ngIf="message && !errorMessage" class=" alert-success  alert">
+                    {{message}}
+                </p>
+                <form [formGroup]="form">
+                    <div class="form-group" *ngIf="data">
+                        <label for="category-name" class="col-form-label">Category Name:</label>
+                        <input type="text" class="form-control" id="category-name" placeholder="Category Name" [(ngModel)]="data.name" formControlName="name">
+                        <span style="display: block ; color: red; margin-top: 10px;"
+                        *ngIf="(name.touched || errorMessage) && name.invalid ">
+                        <span *ngIf="name.errors.required">*Please enter name of category</span>
+                    </span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary " (click)="saveUpdateCategory()">Save a new</button>
+            </div>
+        </div>
+    </div>
+</div>

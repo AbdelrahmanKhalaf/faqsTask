@@ -1,0 +1,142 @@
+
+.fqas{
+    background-color: #ffffff;
+    padding: 13px;
+    border-radius: 5px;
+    box-shadow:1px 1px 1px 1px  hsl(0, 0%, 53%, 0.1);
+}
+li{
+    list-style-type: none;
+
+}
+/*start eidt for input*/
+.display-inline{
+    display: inline-block;
+}
+.form-control{
+    width: 87%;
+    height: 31px;
+    box-shadow:1px 1px 1px 2px hsl(266, 63%, 51%,0.2);
+    border:solid 1px hsl(266, 63%, 51%)
+
+}
+/*end eidt for input*/
+
+.btn{
+    cursor: pointer;
+    border: 2px solid #ba43ff;
+    background-color: transparent;
+    color: #ba43ff;
+    margin-left: 4px;
+}
+.btn:hover{
+    color:#ffffff;
+    background-color: #ba43ff;
+
+}
+.btn:active{
+  color:#ffffff;
+  background-color: #ba43ff;
+
+}
+.btn-sub{
+  color:#ba43ff;
+  background-color: #ffffff;
+  border:0px;
+  line-height:25px;
+  border-radius: 5px;
+  box-shadow:1px 1px 1px 2px  hsl(266, 63%, 51%,0.2);
+}
+/*start edit for icons*/
+.fa-lg {
+    font-size: 1.333333em;
+    margin-top: 3px;
+
+}
+.fa-pull-up {
+    margin-left: 0.3em;
+    margin-top: -9px;
+}
+
+.save-icon{
+    justify-content:  flex-start;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+    top: -9px;
+    margin-right: -45px;
+    justify-content: flex-start;
+    color: #7835d1;
+}
+/*end edit for icons*/
+/* start style for drag  && drob*/
+    /*start edit for section categoreis*/
+  .categoreis-box {
+    padding: 14px 10px;
+    border-left: solid 9px #7835d1;
+    margin-top:50px;
+    color: #ffffff;
+    box-sizing: border-box;
+    cursor: move;
+    background: #ba43ff;
+    font-size: 17px;
+    border-radius: 6px;
+    max-height: 53px;
+
+  }
+
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  .categoreis-list.cdk-drop-list-dragging .categoreis-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  .categoreis-custom-placeholder {
+    background: hsl(278, 100%, 63%,0.3);
+    border-left: solid 9px hsl(266, 63%, 51%);
+    min-height:53px;
+    border-radius: 6px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    min-height:53px;
+    margin-top:50px;
+
+
+  }
+    /*end edit for section categoreis*/
+
+    /*start edit for section FQAs*/
+    .faqs-box {
+        padding: 14px 10px;
+        border-left: solid 9px #7835d1;
+        margin-bottom:10px;
+        margin-top:10px;
+        color: black;
+        box-sizing: border-box;
+        cursor: move;
+        background: #ffffff;
+        font-size: 17px;
+        border-radius: 6px;
+        max-height: 53px;
+        box-shadow:2px 2px 2px 2px  hsl(0, 0%, 53%, 0.1);
+        list-style-type:none
+      }
+      .cdk-drag-animating {
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+      }
+      .faqs-list.cdk-drop-list-dragging .fqas-box:not(.cdk-drag-placeholder) {
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+      }
+      .faqs-custom-placeholder {
+        background: hsl(0, 0%, 100%,0.5);
+        box-shadow:2px 2px 2px 2px  hsl(0, 0%, 53%, 0.1);
+        border-left: solid 9px hsl(266, 63%, 51%);
+        min-height:53px;
+        border-radius: 6px;
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+
+      }
+     
+    /*end edit for section FQAs*/
+
+/* end style for drag  && drob*/

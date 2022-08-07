@@ -1,0 +1,58 @@
+<!--start model for edit the fqa selected-->
+<div class="modal fade" id="editFaq" tabindex="-1" role="dialog" aria-labelledby="editFaq" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update the FAQ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" *ngIf="data">
+                    <p *ngIf="errorMessage " class=" alert-danger alert">
+                        *{{errorMessage}}
+                    </p>
+                    <p *ngIf="message && !errorMessage" class=" alert-success  alert">
+                        {{message}}
+                    </p>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Category :</label>
+                        <select class="form-control" formControlName="categoryId" >
+                            <option *ngFor="let categor of categories" [value]="categor.id">{{categor.name}}</option>
+                        </select>
+                        <span style="display: block ; color: red; margin-top: 10px;"
+                            *ngIf="(categoryId.touched || errorMessage) && categoryId.invalid ">
+                            <span *ngIf="categoryId.errors.required">*Please enter category </span>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Question :</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="data.question"
+                            formControlName="question">
+                        <span style="display: block ; color: red; margin-top: 10px;"
+                            *ngIf="(question.touched || errorMessage) && question.invalid ">
+                            <span *ngIf="question.errors.required">*Please enter question </span>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Answer :</label>
+                        <quill-editor [styles]="{height:'200px'}" [(ngModel)]="data.answer" formControlName="answer">
+                        </quill-editor>
+                        <span style="display: block ; color: red; margin-top: 10px;"
+                            *ngIf="(answer.touched || errorMessage) && answer.invalid ">
+                            <span *ngIf="answer.errors.required">*Please enter answer </span>
+                        </span>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer"  *ngIf="data">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updateFaq(data.categoryId)">Save a new</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end model for edit the fqa selected-->
